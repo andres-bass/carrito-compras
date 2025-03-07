@@ -11,8 +11,9 @@ Este proyecto es un sistema básico para la gestión de productos y un carrito d
 - [Instalación y Configuración](#instalación-y-configuración)
   - [Clonar el Repositorio](#clonar-el-repositorio)
   - [Instalar Dependencias](#instalar-dependencias)
-  - [Configurar el Archivo de Entorno](#configurar-el-archivo-de-entorno)
-  - [Generar la Clave de la Aplicación](#generar-la-clave-de-la-aplicación)
+   ```bash
+git clone https://github.com/tu-usuario/nombre-del-repositorio.git
+cd nombre-del-repositorio
   - [Migrar la Base de Datos](#migrar-la-base-de-datos)
   - [Instalar Dependencias de NPM (Opcional)](#instalar-dependencias-de-npm-opcional)
   - [Configurar React](#configurar-react)
