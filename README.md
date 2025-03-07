@@ -5,19 +5,17 @@ Este proyecto es un sistema básico para la gestión de productos y un carrito d
 - **Products:** Gestión y administración de productos.
 - **Cart:** Carrito de compras, que utiliza la variable `producto_id` para identificar y agregar productos.
 
+---
+
 ## Tabla de Contenidos
 
 - [Requisitos](#requisitos)
 - [Instalación y Configuración](#instalación-y-configuración)
   - [Clonar el Repositorio](#clonar-el-repositorio)
-  - [Instalar Dependencias](#instalar-dependencias)
-   ```bash
-git clone https://github.com/tu-usuario/nombre-del-repositorio.git
-cd nombre-del-repositorio
-  - [Migrar la Base de Datos](#migrar-la-base-de-datos)
-  - [Instalar Dependencias de NPM (Opcional)](#instalar-dependencias-de-npm-opcional)
-  - [Configurar React](#configurar-react)
-  - [Iniciar el Servidor de Desarrollo](#iniciar-el-servidor-de-desarrollo)
+  - [Ejecutar el Backend](#ejecutar-el-backend)
+  - [Ejecutar la Migración](#ejecutar-la-migración)
+  - [Instalación del Frontend](#instalación-del-frontend)
+  - [Ejecutar el Frontend](#ejecutar-el-frontend)
 - [Uso de Git](#uso-de-git)
 - [Detalle de las APIs](#detalle-de-las-apis)
   - [API de Products](#api-de-products)
@@ -25,6 +23,8 @@ cd nombre-del-repositorio
 - [Ejemplo de Uso de la API](#ejemplo-de-uso-de-la-api)
 - [Consideraciones Adicionales](#consideraciones-adicionales)
 - [Contacto](#contacto)
+
+---
 
 ## Requisitos
 
@@ -34,6 +34,8 @@ cd nombre-del-repositorio
 - **Base de Datos:** MySQL, PostgreSQL u otra compatible.
 - **Git:** Para clonar y versionar el repositorio.
 
+---
+
 ## Instalación y Configuración
 
 ### Clonar el Repositorio
@@ -42,4 +44,4 @@ Desde tu terminal, ejecuta:
 
 ```bash
 git clone https://github.com/tu-usuario/nombre-del-repositorio.git
-cd nombre-del-repositorio
+cd carrito-compras
