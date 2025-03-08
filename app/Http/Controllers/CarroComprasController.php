@@ -44,23 +44,38 @@ class CarroComprasController extends Controller
     /**
      * Agregar un producto al carrito.
      */
+    
     public function store(Request $request)
-    {
-        // Validar la entrada
-        $request->validate([
-            'product_id' => 'required|integer|',
-        ]);
+{
+    // Validar la entrada
+    $request->validate([
+        'product_id' => 'required|integer',
+    ]);
 
-        // Simulación de agregar producto al carrito
-        $carro = new CarroCompras();
-        $carro->producto_id = $request->product_id;
-        $carro->save();
+    // Cargar productos desde el JSON
+    $path = resource_path('json/json.json');
+    $jsonContent = file_get_contents($path);
+    $productos = json_decode($jsonContent, true);
 
+    // Verificar si el producto existe en el JSON
+    $producto = collect($productos)->firstWhere('id', $request->product_id);
+
+    if (!$producto) {
         return response()->json([
-            'message' => 'Producto agregado al carrito',
-            'product_id' => $carro->producto_id
-        ]);
+            'message' => 'El producto no existe'
+        ], 404);
     }
+
+    // Agregar producto al carrito
+    $carro = new CarroCompras();
+    $carro->producto_id = $request->product_id;
+    $carro->save();
+
+    return response()->json([
+        'message' => 'Producto agregado al carrito',
+        'product_id' => $carro->producto_id
+    ]);
+}
 
     /**
      * Mostrar un producto específico del carrito.
