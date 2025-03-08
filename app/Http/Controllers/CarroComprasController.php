@@ -32,7 +32,7 @@ class CarroComprasController extends Controller
               
                     'name' => $producto['name'],
                     'price' => $producto['price'],
-                    'quantity' => $producto['quantity']
+                    'quantity' => $compra->quantity
 
                 
             ];
@@ -44,7 +44,7 @@ class CarroComprasController extends Controller
         ]);
     }
 
-    /**
+    /**quantity
      * Agregar un producto al carrito.
      */
     public function store(Request $request)
