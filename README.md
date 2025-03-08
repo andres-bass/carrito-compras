@@ -1,47 +1,54 @@
-# Sistema de Carro de Compras y Productos en Laravel
+# React + TypeScript + Vite
 
-Este proyecto es un sistema básico para la gestión de productos y un carrito de compras, desarrollado en **Laravel**. Se compone de dos módulos principales:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- **Products:** Gestión y administración de productos.
-- **Cart:** Carrito de compras, que utiliza la variable `producto_id` para identificar y agregar productos.
+Currently, two official plugins are available:
 
----
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tabla de Contenidos
+## Expanding the ESLint configuration
 
-- [Requisitos](#requisitos)
-- [Instalación y Configuración](#instalación-y-configuración)
-  - [Clonar el Repositorio](#clonar-el-repositorio)
-  - [Ejecución del Backend](#ejecución-del-backend)
-  - [Ejecución de la Migración](#ejecución-de-la-migración)
-  - [Instalación del Frontend](#instalación-del-frontend)
-  - [Ejecución del Frontend](#ejecución-del-frontend)
-- [Uso de Git](#uso-de-git)
-- [Detalle de las APIs](#detalle-de-las-apis)
-  - [API de Products](#api-de-products)
-  - [API de Cart](#api-de-cart)
-- [Ejemplo de Uso de la API](#ejemplo-de-uso-de-la-api)
-- [Consideraciones Adicionales](#consideraciones-adicionales)
-- [Contacto](#contacto)
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
----
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-## Requisitos
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-- **PHP:** Versión 7.4 o superior.
-- **Composer:** Administrador de dependencias para PHP.
-- **Node.js y NPM:** Para la gestión de recursos del frontend (opcional).
-- **Base de Datos:** MySQL, PostgreSQL u otra compatible.
-- **Git:** Para clonar y versionar el repositorio.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
----
-
-## Instalación y Configuración
-
-### Clonar el Repositorio
-
-Desde tu terminal, ejecuta:
-
-```bash
-git clone https://github.com/tu-usuario/nombre-del-repositorio.git
-cd carrito-compras
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
