@@ -8,8 +8,9 @@ return new class extends Migration {
     {
         Schema::create('Carro_compras', function (Blueprint $table) {
             $table->id(); // Auto-incremental
-            $table->integer('quantity'); // Cantidad del producto en el carrito
             $table->integer('producto_id'); // Cantidad del producto en el carrito
+            $table->integer('quantity'); // Cantidad del producto en el carrito
+
             $table->timestamps();
 
             // Clave foránea referenciando la tabla productos

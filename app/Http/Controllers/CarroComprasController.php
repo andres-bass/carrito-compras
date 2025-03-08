@@ -47,48 +47,49 @@ class CarroComprasController extends Controller
     /**
      * Agregar un producto al carrito.
      */
-    
-     public function store(Request $request)
-     {
-         // Validar la entrada
-         $request->validate([
-             'product_id' => 'required|integer',
-         ]);
-     
-         // Cargar productos desde el JSON
-         $path = resource_path('json/json.json');
-         $jsonContent = file_get_contents($path);
-         $productos = json_decode($jsonContent, true);
-     
-         // Verificar si el producto existe en el JSON
-         $producto = collect($productos)->firstWhere('id', $request->product_id);
-     
-         if (!$producto) {
-             return response()->json([
-                 'message' => 'El producto no existe'
-             ], 404);
-         }
-     
-         // Verificar si el producto ya está en el carrito
-         $carro = CarroCompras::where('producto_id', $request->product_id)->first();
-     
-         if ($carro) {
-             // Si el producto ya está en el carrito, aumentar la cantidad
-             $carro->quantity += 1;
-             $carro->save();
-         } else {
-             // Si no está en el carrito, agregarlo con cantidad = 1
-             $carro = new CarroCompras();
-             $carro->producto_id = $request->product_id;
-             $carro->quantity = 1;
-             $carro->save();
-         }
-     
-         return response()->json([
-             'message' => "Producto agregado al carrito",
-             'product_id' => $carro->producto_id,
-         ]);
-     }
+    public function store(Request $request)
+{
+    // Validar la entrada
+    $request->validate([
+        'product_id' => 'required|integer',
+    ]);
+
+    // Cargar productos desde el JSON
+    $path = resource_path('json/json.json');
+    $jsonContent = file_get_contents($path);
+    $productos = json_decode($jsonContent, true);
+
+    // Buscar el producto en el JSON
+    $producto = collect($productos)->firstWhere('id', $request->product_id);
+
+    if (!$producto) {
+        return response()->json([
+            'message' => 'El producto no existe'
+        ], 404);
+    }
+
+    // Verificar si el producto ya está en el carrito
+    $carro = CarroCompras::where('producto_id', $request->product_id)->first();
+
+    if ($carro) {
+        // Si el producto ya está en el carrito, aumentar la cantidad
+        $carro->quantity += 1;
+        $carro->save();
+    } else {
+        // Si el producto no está en el carrito, agregarlo con cantidad 1
+        $carro = new CarroCompras();
+        $carro->producto_id = $request->product_id;
+        $carro->quantity = 1; // ✅ Asegurar que `quantity` tenga un valor
+        $carro->save();
+    }
+
+    return response()->json([
+        'message' => 'Producto agregado al carrito',
+        'product_id' => $carro->producto_id,
+        'quantity' => $carro->quantity
+    ]);
+}
+
      
 
     /**
